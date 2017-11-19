@@ -1,0 +1,10 @@
+{
+  "name": "gordon",
+  "version": "1.0.0",
+  "description": "Simple Lambda Calculus interpeter",
+  "main": "index.js",
+  "repository": "git@github.com:Tajnymag/gordon.git",
+  "author": "Marek Lukáš <tajnymag@gmail.com>",
+  "license": "MIT",
+  "private": false
+}

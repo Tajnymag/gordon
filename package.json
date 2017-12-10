@@ -2,9 +2,15 @@
   "name": "gordon",
   "version": "1.0.0",
   "description": "Simple Lambda Calculus interpeter",
-  "main": "index.js",
+  "main": "index.html",
   "repository": "git@github.com:Tajnymag/gordon.git",
   "author": "Marek Lukáš <tajnymag@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.0.3"
+  }
 }

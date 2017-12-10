@@ -1,3 +1,7 @@
+# Build resources
+dist
+.cache
+
 # Idea
 .idea/
 

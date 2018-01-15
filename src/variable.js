@@ -9,18 +9,31 @@ class Variable {
 		return this.name;
 	}
 
+	freeVariables() {
+		let categorized_vars = this.detectVariables();
+		return categorized_vars.filter(pair => pair[1] === 'free').map(pair => pair[0]);
+	}
+
 	detectVariables(upper_vars = []) {
 		if (upper_vars.includes(this.name)) {
-			print(this.name + ' is bound');
+			return [this.name, 'bound'];
 		} else {
-			print(this.name + ' is free');
+			return [this.name, 'free'];
 		}
 	}
 
-	alphaReduce(replacementMapping = new Map(), upper_vars = []) {
-		if (replacementMapping[this.name]) {
-			this.name = replacementMapping[this.name];
+	printVariables() {
+		const pair = this.detectVariables();
+
+		print(pair[0] + ' is ' + pair[1]);
+	}
+
+	alphaReduce(replMap = new Map()) {
+		if (replMap[this.name]) {
+			this.name = replMap[this.name];
 		}
+
+		return this;
 	}
 
 	print() {

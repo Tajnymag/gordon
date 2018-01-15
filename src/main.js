@@ -52,10 +52,11 @@ const edux_sample_alpha = new Application(
 );
 
 edux_sample.print();
-edux_sample.detectVariables();
+edux_sample.printVariables();
 
 edux_sample_bound.print();
-edux_sample_bound.detectVariables();
+edux_sample_bound.printVariables();
 
+edux_sample_alpha.print();
 edux_sample_alpha.alphaReduce();
 edux_sample_alpha.print();

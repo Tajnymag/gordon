@@ -25,6 +25,35 @@ function stdebug(input) {
 	}
 }
 
+function atomic(variable) {
+	return variable.constructor === String || variable.constructor === Number;
+}
+
+function flatten(input_array) {
+	return input_array.reduce(function(explored, toExplore) {
+		return explored.concat(
+			Array.isArray(toExplore)
+				? flatten(toExplore)
+				: toExplore
+		);
+	}, []);
+}
+
+function flattenPair(input_array) {
+	const flattened = flatten(input_array);
+	let paired = [];
+
+	for (let i = 0; i < flattened.length; i += 2) {
+		if (flattened[i] === 'bound' || flattened[i] === 'free') {
+			paired.push([flattened[i + 1], flattened[i]]);
+		} else {
+			paired.push([flattened[i], flattened[i + 1]]);
+		}
+	}
+
+	return paired;
+}
+
 function pushUniq(to_array, what_array) {
 	let updated_to_array = to_array.slice(0);
 
@@ -40,6 +69,18 @@ function pushUniq(to_array, what_array) {
 	return updated_to_array;
 }
 
+function newChar(excluded_chars, old_char) {
+	const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+	for (let i = 0; i < alphabet.length; ++i) {
+		if (!excluded_chars.includes(alphabet[i]) && alphabet[i] !== old_char) {
+			return alphabet[i];
+		}
+	}
+
+	return Math.random();
+}
+
 function cloneMap(map_to_copy = new Map()) {
 	let new_map = new Map();
 
@@ -50,4 +91,4 @@ function cloneMap(map_to_copy = new Map()) {
 	return new_map;
 }
 
-export { print, pushUniq, cloneMap };
+export { print, pushUniq, cloneMap, flattenPair, newChar };

@@ -34,14 +34,21 @@ class Lambda {
 	alphaReduce(replMap = new Map(), upper_vars = []) {
 		let copyReplMap = cloneMap(replMap);
 		let copy_upper_vars = upper_vars.slice(0);
+		let argument_tmp = this.argument.split('');
 
-		if (copy_upper_vars.includes(this.argument)) {
-			copyReplMap[this.argument] = newChar(copy_upper_vars, this.argument);
-			this.argument = newChar(copy_upper_vars, this.argument);
+		for (let i = 0; i < argument_tmp.length; ++i) {
+			if (copy_upper_vars.includes(argument_tmp[i])) {
+				const new_name = newChar(copy_upper_vars, argument_tmp[i]);
+
+				copyReplMap[argument_tmp[i]] = new_name;
+				argument_tmp[i] = new_name;
+
+				copy_upper_vars.push(argument_tmp[i]);
+			}
 		}
-		let updated_upper_vars = pushUniq(copy_upper_vars, this.argument);
+		this.argument = argument_tmp.join('');
 
-		this.body.alphaReduce(copyReplMap, updated_upper_vars);
+		this.body.alphaReduce(copyReplMap, copy_upper_vars);
 
 		return this;
 	}

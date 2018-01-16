@@ -30,7 +30,7 @@ function atomic(variable) {
 }
 
 function flatten(input_array) {
-	return input_array.reduce(function(explored, toExplore) {
+	return input_array.reduce(function (explored, toExplore) {
 		return explored.concat(
 			Array.isArray(toExplore)
 				? flatten(toExplore)
@@ -91,4 +91,16 @@ function cloneMap(map_to_copy = new Map()) {
 	return new_map;
 }
 
-export { print, pushUniq, cloneMap, flattenPair, newChar };
+function numberOfLines(input) {
+	let cnt = 0;
+
+	for (let i = 0; i < input.length; ++i) {
+		if (input[i] === '\n') {
+			++cnt;
+		}
+	}
+
+	return cnt;
+}
+
+export { print, pushUniq, cloneMap, flattenPair, newChar, numberOfLines };

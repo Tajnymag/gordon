@@ -22,6 +22,10 @@ class Expression {
 		this.application.printVariables(upper_vars);
 	}
 
+	alphaReduce() {
+		this.application.alphaReduce();
+	}
+
 	print() {
 		print(this.toString());
 	}

@@ -1,5 +1,5 @@
 import config from '../config.js';
-import { print, flattenPair } from "./utils.js";
+import { print, flattenPair, cloneMap } from "./utils.js";
 
 class Application {
 	constructor(...expressions) {
@@ -26,13 +26,13 @@ class Application {
 	}
 
 	detectVariables(upper_vars = []) {
-		let free_variables = [];
+		let categorized_vars = [];
 
 		this.expressions.forEach(expression => {
-			free_variables.push(expression.detectVariables(upper_vars));
+			categorized_vars.push(expression.detectVariables(upper_vars));
 		});
 
-		return flattenPair(free_variables);
+		return flattenPair(categorized_vars);
 	}
 
 	printVariables() {

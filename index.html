@@ -3,14 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Gordon - Lambda Calculus interpeter</title>
+	<style>
+		body {
+			max-width: 900px;
+			margin: auto;
+		}
+		#main_input {
+			width: 100%;
+			resize: vertical;
+		}
+		h2 {
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
-    <div>
-        <label for="main_input">Input your lambda expression of choice: </label>
-        <input type="text" id="main_input" name="">
-    </div>
-    <div>
-        <button>Evaluate</button>
+    <div id="wrapper">
+        <h2>Input your lambda expression of choice: </h2>
+	    <textarea id="main_input" name="main_input"></textarea>
+        <button id="evaluate_btn">Evaluate</button>
     </div>
 
     <script src="src/main.js" type="module"></script>

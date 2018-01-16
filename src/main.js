@@ -1,9 +1,23 @@
-import Expression from './expression.js';
-import Application from "./application.js";
-import Lambda from "./lambda.js";
-import Variable from "./variable.js";
+import evaluate from './evaluate.js';
+import { numberOfLines } from "./utils.js";
 
-const edux_sample = new Expression(
+const inputFormEl = document.getElementById('main_input');
+const evaluateBtn = document.getElementById('evaluate_btn');
+
+evaluateBtn.onclick = (e) => {
+	evaluate(inputFormEl.value);
+};
+
+inputFormEl.onkeydown = function (event) {
+	if (event.keyCode === 9) {
+		var v = this.value, s = this.selectionStart, e = this.selectionEnd;
+		this.value = v.substring(0, s) + '\t' + v.substring(e);
+		this.selectionStart = this.selectionEnd = s + 1;
+		return false;
+	}
+};
+
+inputFormEl.value = `new Expression(
 	new Application(
 		new Lambda(
 			'x',
@@ -13,50 +27,5 @@ const edux_sample = new Expression(
 		),
 		new Variable('y')
 	)
-);
-
-// (λ. x (λy. y x) x y) z
-const edux_sample_bound = new Application(
-	new Lambda('x',
-		new Application(
-			new Lambda(
-				'y',
-				new Application(
-					new Variable('y'),
-					new Variable('x'),
-				),
-			),
-			new Variable('x'),
-			new Variable('y'),
-		),
-	),
-	new Variable('z'),
-);
-
-// (λx. (λz. x z)) (z g)
-const edux_sample_alpha = new Application(
-	new Lambda(
-		'x',
-		new Lambda(
-			'z',
-			new Application(
-				new Variable('x'),
-				new Variable('z')
-			)
-		)
-	),
-	new Application(
-		new Variable('z'),
-		new Variable('g')
-	)
-);
-
-edux_sample.print();
-edux_sample.printVariables();
-
-edux_sample_bound.print();
-edux_sample_bound.printVariables();
-
-edux_sample_alpha.print();
-edux_sample_alpha.alphaReduce();
-edux_sample_alpha.print();
+);`;
+inputFormEl.rows = numberOfLines(inputFormEl.value);

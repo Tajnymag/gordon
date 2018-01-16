@@ -44,9 +44,19 @@ class Application {
 	}
 
 	alphaReduce(replMap = new Map(), upper_vars = this.freeVariables()) {
-		this.expressions.forEach(expression => {
-			expression.alphaReduce(replMap, upper_vars);
-		});
+		for (let i = 0; i < this.expressions.length; ++i) {
+			//const expression_before = JSON.stringify(this.expressions[i]);
+
+			this.expressions[i].alphaReduce(replMap, upper_vars);
+
+			/**
+			const expression_after = JSON.stringify(this.expressions[i]);
+
+			if (expression_before !== expression_after) {
+				break;
+			}
+			 **/
+		}
 
 		return this;
 	}

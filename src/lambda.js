@@ -33,7 +33,7 @@ class Lambda {
 
 	alphaReduce(replMap = new Map(), upper_vars = []) {
 		let copyReplMap = cloneMap(replMap);
-		let copy_upper_vars = upper_vars.slice(0);
+		let copy_upper_vars = upper_vars; // schválně ponechána reference
 		let argument_tmp = this.argument.split('');
 
 		for (let i = 0; i < argument_tmp.length; ++i) {

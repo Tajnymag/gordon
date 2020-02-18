@@ -7,11 +7,5 @@
   "author": "Marek Lukáš <tajnymag@gmail.com>",
   "license": "MIT",
   "private": false,
-  "scripts": {
-    "serve": "live-server"
-  },
-  "devDependencies": {
-    "live-server": "^1.2.0"
-  },
   "dependencies": {}
 }
